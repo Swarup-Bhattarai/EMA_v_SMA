@@ -28,20 +28,20 @@ This project implements real-time **Simple Moving Average (SMA)** and **Exponent
 
 ### Simple Moving Average (SMA)
 
-\[
-\text{SMA}_n = \frac{1}{N} \sum_{i=n-N+1}^{n} x_i
-\]
+Equal weighting across the last \( N = 4 \) inputs:
 
-Equal weighting across the last \( N = 4 \) inputs.
+$$
+\text{SMA}_n = \frac{1}{N} \sum_{i=n-N+1}^{n} x_i
+$$
 
 ### Exponential Moving Average (EMA)
 
-\[
-\text{EMA}_n = \alpha \cdot x_n + (1 - \alpha) \cdot \text{EMA}_{n-1}
-\quad \text{with} \quad \alpha = 0.5
-\]
+Faster response to recent inputs (with \( \alpha = 0.5 \)):
 
-Faster response to recent inputs.
+$$
+\text{EMA}_n = \alpha \cdot x_n + (1 - \alpha) \cdot \text{EMA}_{n-1}
+$$
+
 
 ## Architecture
 
