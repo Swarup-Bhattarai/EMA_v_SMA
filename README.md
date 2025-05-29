@@ -26,21 +26,22 @@ This project implements real-time **Simple Moving Average (SMA)** and **Exponent
 
 ## Math Behind It
 
-### Simple Moving Average (SMA)
+Simple Moving Average (SMA)
 
-Equal weighting across the last \( N = 4 \) inputs:
+Formula:
+SMAₙ = (1 / N) × (xₙ + xₙ₋₁ + ... + xₙ₋ₙ₊₁)
 
+Description:
+This takes the average of the last N inputs. For example, when N = 4, it gives equal weight to the 4 most recent values.
 
-![equation]https://latex.codecogs.com/svg.image?%5Cbg_white%20\text{SMA}_n=\frac{1}{N}\sum_{i=n-N&plus;1}^{n}x_i&space;
+Exponential Moving Average (EMA)
 
-### Exponential Moving Average (EMA)
+Formula:
+EMAₙ = α × xₙ + (1 − α) × EMAₙ₋₁
+with α = 0.5
 
-Faster response to recent inputs (with \( \alpha = 0.5 \)):
-
-$$
-\text{EMA}_n = \alpha \cdot x_n + (1 - \alpha) \cdot \text{EMA}_{n-1}
-$$
-
+Description:
+This gives more weight to recent values, allowing faster response to changes. The parameter α controls how quickly older values are "forgotten."
 
 ## Architecture
 
