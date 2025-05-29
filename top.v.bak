@@ -1,0 +1,20 @@
+module top (
+    input CLOCK_50,
+    input [3:0] SW,
+    input [0:0] KEY,
+    output [7:0] LEDR
+);
+
+    wire clk = CLOCK_50;
+    wire rst = 1'b0;
+    wire key_pressed = ~KEY[0];
+
+    moving_avg uut (
+        .clk(clk),
+        .rst(rst),
+        .sw_in(SW),
+        .key_pressed(key_pressed),
+        .avg_out(LEDR)
+    );
+
+endmodule

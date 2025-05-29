@@ -1,0 +1,46 @@
+module moving_avg #(
+    parameter N = 2
+)(
+    input clk,
+    input rst,
+    input [3:0] sw_in,
+    input key_pressed,
+    output reg [7:0] avg_out
+);
+
+    reg [3:0] buffer [0:N-1];
+    reg index;
+    reg prev_key;
+    reg [1:0] count;  // to track how many values have been entered
+    wire key_rising_edge = key_pressed & ~prev_key;
+
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            buffer[0] <= 0;
+            buffer[1] <= 0;
+            avg_out <= 0;
+            index <= 0;
+            count <= 0;
+            prev_key <= 0;
+        end else begin
+            prev_key <= key_pressed;
+
+            if (key_rising_edge) begin
+                buffer[index] <= sw_in;
+
+                if (count >= N - 1) begin
+                    if (index == 0)
+                        avg_out <= (sw_in + buffer[1]) / N;
+                    else
+                        avg_out <= (sw_in + buffer[0]) / N;
+                end
+
+                index <= ~index;
+
+                if (count < N)
+                    count <= count + 1;
+            end
+        end
+    end
+
+endmodule
