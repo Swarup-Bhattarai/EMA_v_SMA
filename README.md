@@ -30,9 +30,8 @@ This project implements real-time **Simple Moving Average (SMA)** and **Exponent
 
 Equal weighting across the last \( N = 4 \) inputs:
 
-$$
-\text{SMA}_n = \frac{1}{N} \sum_{i=n-N+1}^{n} x_i
-$$
+
+![equation]https://latex.codecogs.com/svg.image?\text{SMA}_n=\frac{1}{N}\sum_{i=n-N&plus;1}^{n}x_i&space;
 
 ### Exponential Moving Average (EMA)
 
